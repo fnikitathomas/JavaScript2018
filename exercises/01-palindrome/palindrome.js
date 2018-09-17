@@ -5,12 +5,13 @@
  * @return {Boolean}
  */
 function isPalindrome(str) {
-  console.log(str)
-  var original = str.replace(/[\s"'.,-\/#!$%\^&*;:{}=\-_`~()\\\[\]@+|?><]/g,"").toLowerCase();
-  var reverse = original.split('').reverse().join('');
-  if(original == reverse)
-    return true
-  else return false
+  return (
+    str ===
+    str
+      .split('')
+      .reverse()
+      .join('')
+  );
 }
 
 module.exports = {

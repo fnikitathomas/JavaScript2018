@@ -10,13 +10,17 @@ function updateCounter() {
   var counter = 0;
   return {
     add: function(num) {
-      counter += num
+      counter += num;
     },
-    retreive: function() {
-      return counter
+    retrieve: function() {
+      return counter;
     }
   };
 }
-var update = updateCounter()
-update.add(9)
-console.log(update.retreive())
+
+var counterAPI = updateCounter();
+counterAPI.add(5);
+counterAPI.add(5);
+counterAPI.add(5);
+var newCounter = counterAPI.retrieve();
+console.log(newCounter);

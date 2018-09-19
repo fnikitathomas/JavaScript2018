@@ -13,7 +13,13 @@
  * @param {number} a
  * @param {number} b
  */
-function specialMultiply(a, b) {}
+function specialMultiply(a, b){
+  if(a && b) 
+    return a * b
+  else return function(b){
+    return a * b
+  }
+}
 
 module.exports = {
   specialMultiply

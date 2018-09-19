@@ -24,7 +24,18 @@
  *  guessRound2(1) // "No more guesses the answer was 0"
  *  guessRound2(1) // "You are all done playing!"
  */
-function guessingGame() {}
+function guessingGame(amount){
+  var answer = Math.floor(Math.random() * 11)
+  var guesses = 0
+  return function(guess){
+    if(guess == answer)
+      console.log("You got it!")
+    else if (guess > answer)
+          console.log("You're too high!")
+    else if (guess < answer)
+          console.log("You're too low!")
+  }
+}
 
 module.exports = {
   guessingGame

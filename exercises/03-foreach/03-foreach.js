@@ -4,7 +4,11 @@
  * @param {array} arr
  * @param {function} callback
  */
-function forEach(arr, callback) {}
+function forEach(arr, callback){
+  for(var i = 0;i < arr.length;i++){
+    callback(arr[i],i,arr)
+  }
+}
 
 /**
  * Given an array of strings, remove all letters of each value except the first and last character in the strings
@@ -14,7 +18,13 @@ function forEach(arr, callback) {}
  *   showFirstAndLast(['colt','matt', 'tim', 'udemy']); // ["ct", "mt", "tm", "uy"]
  *   showFirstAndLast(['hi', 'goodbye', 'smile']) // ['hi', 'ge', 'se']
  */
-function showFirstAndLast(arr) {}
+function showFirstAndLast(arr){
+  let a0 = []
+  arr.forEach(str => {
+    a0.push(str.charAt(0) + str.slice(str.length - 1))
+  })
+  return a0
+}
 
 /**
  * Find and return only the even numbers in an array
@@ -24,7 +34,9 @@ function showFirstAndLast(arr) {}
  *   onlyEvenValues([1,2,3]) // [2]
  *   onlyEvenValues([5,1,2,3,10]) // [2,10]
  */
-function onlyEvenValues(arr) {}
+function onlyEvenValues(arr){
+  return arr.filter(number => number % 2 === 0)
+}
 
 module.exports = {
   forEach,

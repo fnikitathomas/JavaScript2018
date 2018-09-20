@@ -14,7 +14,12 @@
  * @param {string} string2 second string to compare
  * @returns {boolean} whether or not the strings are anagrams
  */
-function anagrams() {}
+function anagrams(string1,string2){
+  var s0 = string1.split("")
+  var s1 = string2.split("")
+  return s0.sort().join("") === s1.sort().join("") ? true : false
+}
+
 
 module.exports = {
   anagrams

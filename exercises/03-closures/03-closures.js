@@ -12,7 +12,7 @@
  * @example (yours might not be like this, since the answer is random every time):
  *
  *  var guessRound1 = guessingGame(5)
- *  guessRound1(1) // "You're too low!"
+ *  guessRound1(1) // "You're too low!" 
  *  guessRound1(8) // "You're too high!"
  *  guessRound1(5) // "You're too low!"
  *  guessRound1(7) // "You got it!"
@@ -27,16 +27,31 @@
 function guessingGame(amount){
   var answer = Math.floor(Math.random() * 11)
   var guesses = 0
+  var numTries = amount
+
   return function(guess){
-    if(guess == answer)
+    if(numTries === 0){
+      console.log(`No more guesses the answer was ${answer}`)
+      numTries--
+    }
+    else if(numTries < 0){
+      console.log("You are all done playing!")
+    }
+    else if(guess === answer){
       console.log("You got it!")
-    else if (guess > answer)
-          console.log("You're too high!")
-    else if (guess < answer)
-          console.log("You're too low!")
+      numTries = -1
+    }
+    else if(guess > answer){
+         console.log("You're too high!")
+         numTries--
+    }
+    else if(guess < answer){
+         console.log("You're too low!")
+         numTries--
+    }
   }
 }
-
+ 
 module.exports = {
   guessingGame
 };

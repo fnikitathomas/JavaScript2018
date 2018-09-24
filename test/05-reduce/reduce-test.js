@@ -10,7 +10,7 @@ const {
   generateTally,
   flattenArray,
   arrayToObject
-} = require("../../exercises/04-reduce/reduce");
+} = require("../../exercises/05-reduce/reduce");
 
 describe("testing the functionalitly of Reduce", () => {
   it("addItems should add up all the numbers and return the total", () => {

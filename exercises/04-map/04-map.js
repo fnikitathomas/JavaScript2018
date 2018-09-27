@@ -5,14 +5,26 @@
  * @param {function} callback
  * @returns {array} new array
  */
-function map(arr, callback) {}
+//function map(arr, callback) {}
+
+function map(arr, callback){
+  let a0 = []
+  for(var i = 0;i < arr.length;i++){
+    a0.push(callback(arr[i],i,arr))
+  }
+  return a0
+}
 
 /**
  * Multiplies each vvalue in an array by two
  * @param {array} arr
  * @returns {array} new array, with each value doubled
  */
-function doubleValues(arr) {}
+//function doubleValues(arr) {}
+
+function doubleValues(arr){
+  return arr.map((number) => number * 2)
+}
 
 /**
  * Given an array nested with objects
@@ -32,7 +44,11 @@ function doubleValues(arr) {}
  * ];
  * extractKey(arrayOfNames, 'name'); // ['Ellie', 'Tim', 'Matt', 'Colt']
  */
-function extractKey(arr, key) {}
+//function extractKey(arr, key) {}
+
+function extractKey(arr, key){
+  return arr.map((obj) =>{return obj[key]})
+}
 
 module.exports = {
   map,

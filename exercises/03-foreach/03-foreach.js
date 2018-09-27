@@ -34,8 +34,21 @@ function showFirstAndLast(arr){
  *   onlyEvenValues([1,2,3]) // [2]
  *   onlyEvenValues([5,1,2,3,10]) // [2,10]
  */
-function onlyEvenValues(arr){
+
+/** 
+ *  Shouldn't this be a job for filter?
+ function onlyEvenValues(arr){
   return arr.filter(number => number % 2 === 0)
+}
+*/
+
+function onlyEvenValues(arr){
+  let a0 = []
+  arr.forEach(number =>{
+    if(number % 2 === 0)
+      a0.push(number)
+  })
+  return a0
 }
 
 module.exports = {

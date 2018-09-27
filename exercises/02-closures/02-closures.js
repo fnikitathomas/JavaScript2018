@@ -6,8 +6,12 @@
  *
  */
 
-function updateCounter() {
-  return {};
+function updateCounter(){
+  let counter = 0
+  return {
+    add : (num) => counter += num,
+    retrieve : () => {return counter}
+  }
 }
 
 var counterAPI = updateCounter();

@@ -6,9 +6,12 @@
  * @returns {array} new array
  */
 function filter(arr, callback){
+  let a0 = []
   for(var i = 0;i < arr.length;i++){
-    callback(arr[i])
+    if(callback(arr[i],i,arr))
+      a0.push(arr[i])
   }
+  return a0
 }
 
 /**
@@ -39,7 +42,9 @@ Examples:
  *  removeVowels('TIM') // ('tm')
  *  removeVowels('ZZZZZZ') // ('zzzzzz')
  */
-function removeVowels(str) {}
+function removeVowels(str){
+  return str.toLowerCase().split('').filter((char) => char.replace(/[aeiou]/gi,'')).join('')
+}
 
 module.exports = {
   filter,

@@ -6,6 +6,7 @@
 function add(a, b) {
   return a + b;
 }
+
 function subtract(a, b) {
   return a - b;
 }
@@ -15,7 +16,9 @@ function subtract(a, b) {
  * @param {number} a
  * @param {number} b
  */
-
+function multiply(a,b){
+  return a * b
+}
 /**
  * Loops through a multidimensional array of object literals
  * and returns a new array where only the adults are included
@@ -39,6 +42,6 @@ function findAdults(people) {
 module.exports = {
   add,
   subtract,
-  // Include multiply here
+  multiply, // Include multiply here
   findAdults
 };

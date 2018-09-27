@@ -6,9 +6,7 @@
  * @param {number} b
  * @returns {number} the sum of `a` plus `b`
  */
-function add(a, b) {
-  return a + b;
-}
+let add = (a, b) => a + b
 
 /**
  * Refactor the following to use ES6 arrow syntax.
@@ -17,6 +15,7 @@ function add(a, b) {
  * @returns {array} an array of only the numbers that, when multiplied by 3,
  * are divisibile by 5
  */
+/*
 function tripleAndFilter(arr) {
   return arr
     .map(function(value) {
@@ -26,6 +25,8 @@ function tripleAndFilter(arr) {
       return value % 5 === 0;
     });
 }
+*/
+let tripleAndFilter = (arr) => arr.map((value) => value * 3).filter((value) => value % 5 === 0)
 /**
  * Refactor the following to use ES6 arrow syntax.
  * Make sure your refactored function is still called "doubleOddNumbers".
@@ -33,6 +34,8 @@ function tripleAndFilter(arr) {
  * @returns {array} an array of only the even numbers. Each value in the
  * new array of numbers is doubled
  */
+
+ /*
 function doubleOddNumbers(arr) {
   return arr
     .filter(function(val) {
@@ -42,6 +45,9 @@ function doubleOddNumbers(arr) {
       return val * 2;
     });
 }
+*/
+
+let doubleOddNumbers = (arr) =>{return arr.filter((val) => val % 2 !== 0).map((val) => val * 2)}
 
 /**
  * Refactor the following to use ES6 arrow syntax and let declarations.

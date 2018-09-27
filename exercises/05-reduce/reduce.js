@@ -6,14 +6,18 @@
  *  addItems([1,5,6]) // 12
  *  addItems([1,-2,-3]) // -4
  */
-function addItems(arr) {}
+function addItems(arr){
+  return arr.reduce(((acc,number) => acc + number),0)
+}
 
 /**
  * Create a function that flattens an array (that is, it should "unnest" a nested array).
  * @param {array} array e.g. `[[1, 3], [5, 10]]`
  * @returns {array} new, flattened array e.g. `[1, 3, 5, 10]`
  */
-function flattenArray(array) {}
+function flattenArray(arr){
+  return  arr.reduce((acc,value) => acc.concat(value),[])
+}
 
 /**
  * Create a function that tallies the number of each kind of "thing" within the array
@@ -23,7 +27,26 @@ function flattenArray(array) {}
  *   var fruits = ['Apple', 'Orange', 'Apple', 'Blueberry', 'Grape', 'Grape'];
  *   generateTally(generateTally); // {Apple: 2, Orange: 1, Blueberry: 1, Grape: 2}
  */
-function generateTally(array) {}
+
+/* function generateTally(array){
+ * return array.reduce(((acc,element) =>{
+ *   if(!acc.hasOwnProperty(element))
+ *     acc[element] = 1
+ *   else if(acc[element] >= 1)
+ *     acc[element]++
+ *   return acc
+ * }),{})
+ *}
+ * I originally did this, then remembered a previous technique and my distaste for using methods
+ * I haven't researched...
+*/
+
+function generateTally(arr){
+  return arr.reduce(((acc,element) =>{
+    !acc[element] ? acc[element] = 1 : acc[element]++ //check for property existence
+    return acc
+  }),{})
+}
 
 /**
  * Create a function, that when given an array of object literals, will index the object literals by a single column
@@ -47,7 +70,14 @@ function generateTally(array) {}
  *   456: {id, 456, name: 'Rachel', age: 35}
  * }
  */
-function arrayToObject(arr) {}
+
+function arrayToObject(arr){
+  return arr.reduce(((acc,obj) =>{
+    if(acc[obj.id] === undefined) 
+      acc[obj.id] = obj
+    return acc
+  }),{})
+}
 
 module.exports = {
   addItems,

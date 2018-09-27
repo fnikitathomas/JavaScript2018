@@ -5,7 +5,21 @@
  the parameter num will be any number from 1 to 1000. 
  */
 
-function simpleAdding(num) {}
+/**
+ * 
+ * function simpleAdding(num){
+ * let j = 0
+ * for(var i = 1;i <= num;i++){
+ *   j += i
+ * }
+ * return j
+ *} 
+ * Or use math : https://en.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_%E2%8B%AF
+ */
+
+function simpleAdding(num){
+  return (num * (num + 1)) / 2
+}
 
 module.exports = {
   simpleAdding

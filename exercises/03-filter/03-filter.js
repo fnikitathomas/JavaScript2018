@@ -43,7 +43,7 @@ Examples:
  *  removeVowels('ZZZZZZ') // ('zzzzzz')
  */
 function removeVowels(str){
-  return str.replace(/[aeiou]/gi,'').toLowerCase()
+  return str.toLowerCase().split('').filter((char) => char.replace(/[aeiou]/gi,'')).join('')
 }
 
 module.exports = {

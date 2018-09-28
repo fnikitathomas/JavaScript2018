@@ -55,14 +55,31 @@ let doubleOddNumbers = (arr) =>{return arr.filter((val) => val % 2 !== 0).map((v
  * Sorry, this does not have a unit test. For JSBin,
  * @see https://jsbin.com/noluxolixe/1/edit?js,console
  */
-var sayNameLaterObj = {
+/**
+ * -- This is why I didn't submit this earlier, there is an issue with 'this'.
+ * -- See the console output from the commented code.
+ var sayNameLaterObj = {
   name: "Jamal",
   sayLater: function() {
+    console.log("sayLater Fn:",this)
     setTimeout(function() {
-      console.log(this.name);
+      console.log("setTimeout Fn",this)
+      console.log(sayNameLaterObj.name);
     }, 1000);
   }
 };
+ */
+
+var sayNameLaterObj = {
+  name: "Jamal",
+  sayLater: () =>{
+    setTimeout(() =>{
+      console.log(sayNameLaterObj.name);
+    }, 1000);
+  }
+};
+
+console.log(sayNameLaterObj.sayLater())
 
 module.exports = {
   add,

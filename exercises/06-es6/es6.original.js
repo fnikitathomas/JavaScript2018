@@ -14,18 +14,23 @@
  * ES6 Chart: @see http://es6-features.org/#Constants
  */
 
-let messageBox = document.getElementById("message");
+// What can we put in place of "var"?
+var messageBox = document.getElementById("message");
 
-let guestNetworkStatus = {
+// What can we put in place of "var"?
+var guestNetworkStatus = {
   location: "Sunnyside Hotel",
   networkName: "Guest Network",
   uptime: 90,
   lastPinged: new Date()
 };
 
-for (let i = 0; i < 5; i++) {
-  setTimeout(() => {
-    const serverData = [
+// What can we put in place of "var"?
+for (var i = 0; i < 5; i++) {
+  // What can we put in place of "function"?
+  setTimeout(function() {
+    // Let's make this a constant, because we are not going to ever change it
+    var serverData = [
       {
         networkName: "Guest Network",
         lastPinged: new Date(),
@@ -42,27 +47,39 @@ for (let i = 0; i < 5; i++) {
         uptime: generateFakeUptime()
       }
     ];
-    process(...serverData);
+    // "Spread" this out so you are only passing in one argument
+    process(serverData[0], serverData[1], serverData[2]);
   }, i * 3000);
 }
 
-let process = (guestNetwork, lobbyNetwork, staffNetwork) => {
+function process(guestNetwork, lobbyNetwork, staffNetwork) {
+  // Replace the next two lines by destructuring an object instead
+  var lastPinged = guestNetwork.lastPinged;
+  var uptime = guestNetwork.uptime;
 
-  let {networkName,lastPinged,uptime} = guestNetwork
-
-  Object.assign(guestNetworkStatus,{lastPinged:lastPinged,uptime:uptime})
+  // Let's set the properties of guestNetworkStatus by shallow copying
+  // one object onto another. What object method can we use to do this?
+  // The first object copied will be guestNetworkStatus
+  // The second object copied will be constructed with object shorthand
+  guestNetworkStatus.lastPinged = lastPinged;
+  guestNetworkStatus.uptime = uptime;
   console.log(guestNetworkStatus);
 
-  let isBestNetwork =
+  // Does this need to use "var"?
+  var isBestNetwork =
     uptime > lobbyNetwork.uptime && uptime > staffNetwork.uptime;
 
   render(guestNetworkStatus, isBestNetwork);
 }
 
 function render(guestNetworkStatus, betterThanStaffNetwork) {
-  let a = guestNetworkStatus.networkName, b = guestNetworkStatus.uptime;
-  let message = `${a} : ${b} % uptime`;
-  if(betterThanStaffNetwork)
+  // Set message with string interpolation
+  var message =
+    guestNetworkStatus.networkName +
+    ": " +
+    guestNetworkStatus.uptime +
+    "% uptime";
+  if (betterThanStaffNetwork)
     message += "\nThis is outperforming every other network.";
   console.log(message);
   messageBox.innerHTML = message;

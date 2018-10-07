@@ -13,7 +13,13 @@
  * contains information about a person.
  * @returns {string} CSV string that you can open in Excel, Numbers or another spreadsheet program
  */
-function createCsvString(people) {}
+function createCsvString(people) {
+  let str = `"Name","Gender","Location","DOB"\n`
+  for(let obj of people){
+    str += `"${obj.name}","${obj.gender}","${obj.location}","${obj.dob}"\n`
+  }
+  return str
+}
 
 module.exports = {
   createCsvString

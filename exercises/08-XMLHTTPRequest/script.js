@@ -15,8 +15,13 @@
  */
 function loadAllCharacters(callback) {
   var XHR = new XMLHttpRequest();
-
-  XHR.onreadystatechange = function() {};
+  XHR.onreadystatechange = function() {
+    if(XHR.readyState === 4  && XHR.status === 200){
+      callback(JSON.parse(XHR.responseText))
+    }
+  };
+  XHR.open('GET','https://rickandmortyapi.com/api/character')
+  XHR.send()
 }
 
 function populateDropDown(data) {
@@ -29,3 +34,6 @@ function populateDropDown(data) {
     );
   });
 }
+
+
+loadAllCharacters((resp)=>populateDropDown(resp))

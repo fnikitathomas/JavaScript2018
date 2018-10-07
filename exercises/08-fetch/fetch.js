@@ -16,11 +16,20 @@
  *
  */
 
-const loadImage = url => {};
+const loadImage = url => {
+  fetch('https://dog.ceo/api/breeds/image/random')
+  .then((resp)=> resp.json())
+  .then((data)=> renderImageToPage(data.message))
+};
 
 /** This function should render an image to the page */
 const renderImageToPage = src => {
   $("#image").prop("src", src);
 };
 
-renderImageToPage();
+var element = document.getElementsByTagName('button')[0]
+
+element.addEventListener('click',(e)=>{
+  loadImage()
+})
+

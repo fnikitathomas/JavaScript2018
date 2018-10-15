@@ -40,7 +40,6 @@ const jewels = [...Array(35).keys()].map(num => {
     isVisible: true
   };
 });
-
 // Hint: you can pass down more properties to Jewel
 function Jewel(props) {
   return (
@@ -52,15 +51,18 @@ function Jewel(props) {
       height="128"
       tabIndex="-1"
       role="button"
+      onClick={props.onClick} // (me) - Did this on instinct, and I am glad I did...
     />
   );
 }
 
 function Counter(props) {
+  //console.log(this) --> undefined - (me) - (This is when the light switched on)
   return <div className="Counter">{props.count || 0}</div>;
 }
 
 // Convert this to a React Component Class
+/*
 function JewelGame() {
   return (
     <main className="JewelGame">
@@ -71,6 +73,55 @@ function JewelGame() {
       })}
     </main>
   );
+} (me) - Kept for historical purposes
+*/
+
+// (me) - Basically the code you posted, but I now have a better understanding of it
+class JewelGame extends Component {
+  // (me) - In the constructor we can set both state && properties
+  constructor(props){
+    super(props)
+    this.state = {...jewels} // (me) - Yay!! See next comment->
+    this.count = 0
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+/**
+ * Originally I used `this.state = jewels` above. Unfortunately since 'jewels' is an Array
+ * I received this in devtools:"Warning: JewelGame.state: must be set to an object or null"
+ * A React class's state must be an Object or null, period. The code still executed, but it
+ * exposed a flaw that could be exploited. Ergo, I used the spread operator in its stead.
+ * The following code is kept for testing in the handleClick() method:
+ *    console.log("index",idx)
+ *    console.log("newState:",newState,"Inside handler: Array.isArray?",Array.isArray(newState))
+ *    console.log("count",this.count)
+ * `Object.assign(this.state)` === `{...this.state}`
+ */
+
+  handleClick(idx){
+    let newState = {...this.state} // (me) - returns an iterable Object with an index
+    newState[idx].isVisible = false;
+    this.count += 1
+    this.setState(newState);
+  }
+
+/**
+ * (me) - Kept for testing: insert inside render() before the return statement -->
+ * console.log("this.state",this.state,"\nArray.isArray?",Array.isArray(this.state))
+ * <-- Thanks, Matina!
+ */
+
+  render(){
+    return (
+      <main className="JewelGame">
+        <Counter count={this.count}/>
+        {jewels.map((jewel, index) => {
+          const key = "jewel-" + index;
+          return jewel.isVisible? <Jewel image={jewel.image} key={key} onClick={()=>this.handleClick(index)}/> : null;
+        })}
+      </main>
+    );
+  }
 }
 
 export default JewelGame;

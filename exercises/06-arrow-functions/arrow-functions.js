@@ -73,7 +73,7 @@ let doubleOddNumbers = (arr) =>{return arr.filter((val) => val % 2 !== 0).map((v
 
 var sayNameLaterObj = {
   name: "Jamal",
-  sayLater: () =>{
+  sayLater: function(){
     setTimeout(() =>{
       console.log(sayNameLaterObj.name);
     }, 1000);

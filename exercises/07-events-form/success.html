@@ -32,7 +32,6 @@
                 return result;
             }
             var codeName = findGetParameter('codeName');
-            console.log('here', codeName);
             if (codeName) {
                 message.textContent = 'Good job ' + codeName + '!';
                 document.getElementsByTagName('body')[0].classList.add('bg-success');
